@@ -59,14 +59,11 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemDelegate{
 
 //TODO: Refactor shared method
 extension ListController: UITextFieldDelegate{
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 2, options: .curveEaseIn, animations: {
-            self.popup.transform = CGAffineTransform(translationX: 0, y: -self.keyboardHeight)
-        }, completion: nil)
+        popup.animateView(transform: CGAffineTransform(translationX: 0, y: -keyboardHeight), duration: 0.50)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 2, options: .curveEaseIn, animations: {
-            self.popup.transform = CGAffineTransform(translationX: 0, y: 0)
-        }, completion: nil)
+        popup.animateView(transform: CGAffineTransform(translationX: 0, y: 0), duration: 0.55)
     }
 }
