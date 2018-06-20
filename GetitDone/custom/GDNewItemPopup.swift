@@ -11,16 +11,16 @@ class GDNewItemPopup: GDGradient {
     //MARK: https://www.raizlabs.com/dev/2017/01/fixing-controls-scroll-views-ios/
     let cancel = GDButton(title: "  cancel  ", type: .roundBtn, radius: 4)
     let add = GDButton(title: "  add  ", type: .roundBtn, radius: 4)
-    let textFiel = GDTextField(placeholder: "go buy Ikea frames", inset: 6)
+    let textField = GDTextField(placeholder: "go buy Ikea frames", inset: 6)
     var delegate: GDNewItemDelegate?
 
     @objc func handleCancel(){
-        print("Cancel btn has been pushed")
+        textField.resignFirstResponder()
     }
     @objc func handleAdd(){
-        print("Add btn has been pushed")
-        if let delegate = self.delegate{
-            delegate.addItemToList()
+
+        if let delegate = self.delegate, let textFieldText = self.textField.text{
+            delegate.addItemToList(text: textFieldText)
         }
     }
 
@@ -34,7 +34,7 @@ class GDNewItemPopup: GDGradient {
 
         addSubview(cancel)
         addSubview(add)
-        addSubview(textFiel)
+        addSubview(textField)
 
         NSLayoutConstraint.activate([
             cancel.leftAnchor.constraint(equalTo: leftAnchor, constant: inset),
@@ -45,10 +45,10 @@ class GDNewItemPopup: GDGradient {
             add.topAnchor.constraint(equalTo: topAnchor, constant: inset),
             add.heightAnchor.constraint(equalToConstant: 24),
 
-            textFiel.leftAnchor.constraint(equalTo: leftAnchor, constant: inset),
-            textFiel.rightAnchor.constraint(equalTo: rightAnchor, constant: -inset),
-            textFiel.heightAnchor.constraint(equalToConstant: 25),
-            textFiel.topAnchor.constraint(equalTo: add.bottomAnchor, constant: 3)
+            textField.leftAnchor.constraint(equalTo: leftAnchor, constant: inset),
+            textField.rightAnchor.constraint(equalTo: rightAnchor, constant: -inset),
+            textField.heightAnchor.constraint(equalToConstant: 25),
+            textField.topAnchor.constraint(equalTo: add.bottomAnchor, constant: 3)
             ])
 
         cancel.addTarget(self, action: #selector(self.handleCancel), for: .touchUpInside)

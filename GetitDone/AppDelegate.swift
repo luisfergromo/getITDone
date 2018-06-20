@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
 
 
-        let wc = WelcomeController()
-//        let wc = ListController()
+//        let wc = WelcomeController()
+        let wc = ListController()
         window = UIWindow(frame: UIScreen.main.bounds)
         //print(window?.frame as Any)
         window?.makeKeyAndVisible()

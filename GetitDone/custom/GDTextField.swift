@@ -18,7 +18,7 @@ class GDTextField: UITextField {
         self.placeholder = placeholder
         self.backgroundColor = .white
         self.layer.cornerRadius = radius
-        //self.insets = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: 0)
+//        self.insets = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: 0)
 
 
     }

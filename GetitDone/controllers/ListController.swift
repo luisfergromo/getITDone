@@ -13,8 +13,8 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemDelegate{
         print("trying to open add item popup view")
     }
 
-    func addItemToList() {
-        print("trying to add item to the list")
+    func addItemToList(text: String) {
+        print("text in textfield is \(text)")
     }
 
     let header = GDHeaderView(title: "Stuff to get done", subtitle: "4 Left")
@@ -29,12 +29,6 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemDelegate{
         let keyboardSize = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
         self.keyboardHeight = keyboardSize.height
         print(self.keyboardHeight)
-
-//        popup.transform = CGAffineTransform(translationX: 0, y: -self.keyboardHeight)
-
-//        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 2, options: .curveEaseIn, animations:{
-//            self.popup.transform = CGAffineTransform(translationX: 0, y: -self.keyboardHeight)
-//        }, completion: nil)
     }
 
 
@@ -57,18 +51,22 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemDelegate{
             popup.heightAnchor.constraint(equalToConstant: 80)
             ])
 
-        popup.textFiel.delegate = self
-        // as? UITextFieldDelegate
+        popup.textField.delegate = self
         popup.delegate = self
-
         header.delegate = self
     }
 }
+
+//TODO: Refactor shared method
 extension ListController: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
-
         UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 2, options: .curveEaseIn, animations: {
             self.popup.transform = CGAffineTransform(translationX: 0, y: -self.keyboardHeight)
+        }, completion: nil)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 2, options: .curveEaseIn, animations: {
+            self.popup.transform = CGAffineTransform(translationX: 0, y: 0)
         }, completion: nil)
     }
 }
