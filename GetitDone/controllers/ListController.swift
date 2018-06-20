@@ -61,9 +61,9 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemDelegate{
 extension ListController: UITextFieldDelegate{
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        popup.animateView(transform: CGAffineTransform(translationX: 0, y: -keyboardHeight), duration: 0.50)
+        popup.animateView(transform: CGAffineTransform(translationX: 0, y: -keyboardHeight), duration: 0.5)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        popup.animateView(transform: CGAffineTransform(translationX: 0, y: 0), duration: 0.55)
+        popup.animateView(transform: CGAffineTransform(translationX: 0, y: 0), duration: 0.6)
     }
 }
